@@ -3,7 +3,6 @@ import { MongoClient } from "mongodb";
 export default async function handler(req, res) {
   if (req.method === "POST") {
     const data = req.body;
-    console.log(data);
 
     const { tite, image, address, description } = data;
 
@@ -15,7 +14,6 @@ export default async function handler(req, res) {
     const meetupCollections = db.collection("meetups");
 
     const result = await meetupCollections.insertOne(data);
-    console.log(result);
     client.close();
 
     res.status(201).json({ message: "meetup inserted!" });
