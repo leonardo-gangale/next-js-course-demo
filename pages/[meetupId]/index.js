@@ -1,7 +1,15 @@
 import MeetupDetail from "../../components/meetups/MeetupDetail";
 import { MongoClient, ObjectId } from "mongodb";
+import { useRouter } from "next/router";
 
 export default function meetupDetailPage(props) {
+  // If the page is not yet generated, this will be displayed
+  // initially until getStaticProps() finishes running
+  const router = useRouter();
+  if (router.isFallback) {
+    return <div>Loading...</div>;
+  }
+
   return (
     <MeetupDetail
       title={props.meetupData.title}
